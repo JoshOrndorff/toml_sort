@@ -11,7 +11,7 @@ inputs:
     required: true
     default: "Cargo.toml"
   all:
-    description: "Performs check on all the TOML files it can find"
+    description: "Performs check on all the TOML files it can find starting from current directory"
     required: true
     default: false
 
@@ -22,11 +22,11 @@ runs:
       shell: "bash"
       run: cargo install --git https://github.com/Off-Narrative-Labs/toml_sort
     - if: ${{ inputs.all }}
-      name: "Running TOML Sort on all files"
+      name: "Running TOML Sort check on all TOML files starting from current directory"
       shell: "bash"
       run: find . -name "*.toml" | xargs -L1 toml-sort --check
     - if: ${{ !inputs.all }}
-      name: "Running TOML Sort on given files"
+      name: "Running TOML Sort check on given files"
       shell: "bash"
       run: toml-sort --check {{ inputs.files }}
       

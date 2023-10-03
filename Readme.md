@@ -3,7 +3,7 @@ TOML Sort
 
 Simple tool for sorting toml files via cli or ci. It was made with `Cargo.toml` files in mind but is likely useful elsewhere.
 
-## Usage
+## CLI Usage
 
 ### Installation
 
@@ -23,7 +23,7 @@ toml-sort [files]
 toml-sort --check [files]
 ```
 
-### GitHub Action
+## GitHub Action
 
 This will only check `./Cargo.toml`:  
 ```yaml
