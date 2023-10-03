@@ -1,0 +1,23 @@
+name: "TOML Sort"
+author: "Off-Narrative Labs"
+description: "Sort and format TOML files"
+branding:
+  icon: "check-circle"
+  color: "green"
+
+inputs:
+  filename:
+    description: "Name of the file(s) to check, default is Cargo.toml"
+    required: true
+    default: "Cargo.toml"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Installing TOML Sort"
+      shell: "bash"
+      run: cargo install --git https://github.com/Off-Narrative-Labs/toml_sort
+    - name: "Running TOML Sort"
+      shell: "bash"
+      run: find . -name Cargo.toml | xargs -L1 toml-sort --check
+      
