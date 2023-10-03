@@ -6,10 +6,14 @@ branding:
   color: "green"
 
 inputs:
-  filename:
-    description: "Name of the file(s) to check, default is Cargo.toml"
+  files:
+    description: "Files to check, default is Cargo.toml"
     required: true
     default: "Cargo.toml"
+  all:
+    description: "Performs check on all the TOML files it can find"
+    required: true
+    default: false
 
 runs:
   using: "composite"
@@ -17,7 +21,12 @@ runs:
     - name: "Installing TOML Sort"
       shell: "bash"
       run: cargo install --git https://github.com/Off-Narrative-Labs/toml_sort
-    - name: "Running TOML Sort"
+    - if: ${{ inputs.all }}
+      name: "Running TOML Sort on all files"
       shell: "bash"
-      run: find . -name Cargo.toml | xargs -L1 toml-sort --check
+      run: find . -name "*.toml" | xargs -L1 toml-sort --check
+    - if: ${{ !inputs.all }}
+      name: "Running TOML Sort on given files"
+      shell: "bash"
+      run: toml-sort --check {{ inputs.files }}
       
