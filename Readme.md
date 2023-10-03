@@ -27,13 +27,13 @@ toml-sort --check [files]
 
 This will only check `./Cargo.toml`:  
 ```yaml
-- uses: Off-Narrative-Labs/toml_sort
+- uses: Off-Narrative-Labs/toml_sort@v1
 ```
 
 If you want the action to check all the TOML files, then you can use:
 
 ```yaml
-- uses: Off-Narrative-Labs/toml_sort
+- uses: Off-Narrative-Labs/toml_sort@v1
   with:
     all: true
 ```
@@ -41,7 +41,7 @@ If you want the action to check all the TOML files, then you can use:
 In alternative, if you want to check only a certain set of files:
 
 ```yaml
-- uses: Off-Narrative-Labs/toml_sort
+- uses: Off-Narrative-Labs/toml_sort@v1
   with:
     files: Cargo.toml foo/Cargo.toml bar/Cargo.toml
 ```
