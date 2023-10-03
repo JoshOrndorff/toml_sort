@@ -20,13 +20,13 @@ runs:
   steps:
     - name: "Installing TOML Sort"
       shell: "bash"
-      run: cargo install --git https://github.com/Off-Narrative-Labs/toml_sort
+      run: curl https://github.com/Off-Narrative-Labs/toml_sort/releases/download/v0.1.0/toml-sort-x86_64-unknown-linux-gnu.tar.gz -L | tar -xz
     - if: ${{ inputs.all }}
       name: "Running TOML Sort check on all TOML files starting from current directory"
       shell: "bash"
-      run: find . -name "*.toml" -not -path "./target/*" | xargs -L1 toml-sort --check
+      run: find . -name "*.toml" -not -path "./target/*" | xargs -L1 ./toml-sort --check
     - if: ${{ !inputs.all }}
       name: "Running TOML Sort check on given files"
       shell: "bash"
-      run: toml-sort --check {{ inputs.files }}
+      run: ./toml-sort --check {{ inputs.files }}
       
