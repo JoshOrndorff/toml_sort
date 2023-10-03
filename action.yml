@@ -24,7 +24,7 @@ runs:
     - if: ${{ inputs.all }}
       name: "Running TOML Sort check on all TOML files starting from current directory"
       shell: "bash"
-      run: find . -name "*.toml" | xargs -L1 toml-sort --check
+      run: find . -name "*.toml" -not -path "./target/*" | xargs -L1 toml-sort --check
     - if: ${{ !inputs.all }}
       name: "Running TOML Sort check on given files"
       shell: "bash"
