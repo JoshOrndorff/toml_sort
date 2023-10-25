@@ -24,7 +24,7 @@ runs:
   steps:
     - name: "Installing TOML Sort"
       shell: "bash"
-      run: curl https://github.com/Off-Narrative-Labs/toml_sort/releases/download/v1.0.0/toml-sort-x86_64-unknown-linux-gnu.tar.gz -L | tar -xz
+      run: curl https://github.com/Off-Narrative-Labs/toml_sort/releases/download/v1.1.0/toml-sort-x86_64-unknown-linux-gnu.tar.gz -L | tar -xz
     - if: ${{ inputs.all }}
       name: "Running TOML Sort check"
       shell: "bash"
