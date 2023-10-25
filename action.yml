@@ -7,13 +7,17 @@ branding:
 
 inputs:
   files:
-    description: "Files to check, default is Cargo.toml"
+    description: "List of files to check, if all is unset. Default is Cargo.toml."
     required: true
     default: "Cargo.toml"
   all:
-    description: "Performs check on all the TOML files it can find starting from current directory"
+    description: "Performs check on all the TOML files it can find, starting from current directory."
     required: true
     default: false
+  match:
+    description: "If all is set, performs checks on all the TOML files it can find that match this string."
+    required: true
+    default: "*.toml"
 
 runs:
   using: "composite"
@@ -22,11 +26,11 @@ runs:
       shell: "bash"
       run: curl https://github.com/Off-Narrative-Labs/toml_sort/releases/download/v1.0.0/toml-sort-x86_64-unknown-linux-gnu.tar.gz -L | tar -xz
     - if: ${{ inputs.all }}
-      name: "Running TOML Sort check on all TOML files starting from current directory"
+      name: "Running TOML Sort check"
       shell: "bash"
-      run: find . -iname "*.toml" -not -path "./target/*" | xargs -L1 ./toml-sort --check
+      run: find . -type f -iname ${{ inputs.match }} -not -path "./target/*" | xargs -L1 ./toml-sort --check
     - if: ${{ !inputs.all }}
-      name: "Running TOML Sort check on given files"
+      name: "Running TOML Sort check"
       shell: "bash"
       run: ./toml-sort --check {{ inputs.files }}
       

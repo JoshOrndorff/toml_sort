@@ -38,6 +38,15 @@ If you want the action to check all the TOML files, then you can use:
     all: true
 ```
 
+🆕 If you want the action to check all the TOML files that match a certain name:
+
+```yaml
+- uses: Off-Narrative-Labs/toml_sort@v1
+  with:
+    all: true
+    match: "Cargo.toml"
+```
+
 In alternative, if you want to check only a certain set of files:
 
 ```yaml
