@@ -28,7 +28,7 @@ runs:
     - if: ${{ inputs.all }}
       name: "Running TOML Sort check"
       shell: "bash"
-      run: find . -type f -iname ${{ inputs.match }} -not -path "./target/*" | xargs -L1 ./toml-sort --check
+      run: find . -type f -iname "${{ inputs.match }}" -not -path "./target/*" | xargs -L1 ./toml-sort --check
     - if: ${{ !inputs.all }}
       name: "Running TOML Sort check"
       shell: "bash"
